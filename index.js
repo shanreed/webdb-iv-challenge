@@ -27,6 +27,28 @@ server.get('/api/dishes', async (req, res) => {
   }
 });
 
+// list all recipes
+server.get('/api/recipes', async (req, res) => {
+  // get the recipes from the database
+  try {
+    const recipes = await db('recipes'); // all the records from the table
+    res.status(200).json(recipes);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// list all ingredients
+server.get('/api/ingredients', async (req, res) => {
+  // get the ingredients from the database
+  try {
+    const ingredients = await db('ingredients'); // all the records from the table
+    res.status(200).json(ingredients);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 const port = process.env.PORT || 5000;
 server.listen(port, () =>
   console.log(`\n** API running on http://localhost:${port} **\n`)
